@@ -50,7 +50,7 @@ public struct ParsedURL {
     private let port: Int
     private let path: String
 
-    init(_ url: String, login: String? = nil, password: String? = nil) throws {
+    public init(_ url: String, login: String? = nil, password: String? = nil) throws {
         // format: [protocol://]host[:port][/path]
         let regex = /(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?/
         guard let match = try regex.wholeMatch(in: url) else {
