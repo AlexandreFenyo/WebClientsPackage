@@ -62,7 +62,7 @@ public struct HTML {
         guard let head = String(bytes: data[0..<min(1024, data.indices.last!)], encoding: .ascii) else {
             return encoding
         }
-        let regex = /charset=(?<charset>[a-zA-Z0-9-]+)/
+        let regex = #"/charset=(?<charset>[a-zA-Z0-9-]+)/"#
         guard let match = try regex.firstMatch(in: head) else {
             return encoding
         }
