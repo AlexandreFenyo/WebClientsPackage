@@ -6,12 +6,12 @@ import PackageDescription
 
 let package = Package(
     name: "WebClientsPackage",
-    platforms: [
-        .macOS(.v13),
-            .iOS(.v16)//,
+//    platforms: [
+//        .macOS(.v13),
+//            .iOS(.v16)//,
 //            .watchOS(.v7),
 //            .tvOS(.v13)
-        ],
+//        ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
