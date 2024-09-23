@@ -177,11 +177,13 @@ public final class WebClientSession: Sendable {
             dict[kCFNetworkProxiesHTTPEnable as String] = 1
             dict[kCFNetworkProxiesHTTPProxy as String] = config.proxy_host
             dict[kCFNetworkProxiesHTTPPort as String] = config.proxy_port
-            
+
+#if os(macOS)
             // For URL starting with https://
             dict[kCFNetworkProxiesHTTPSEnable as String] = 1
             dict[kCFStreamPropertyHTTPSProxyHost as String] = config.proxy_host
             dict[kCFStreamPropertyHTTPSProxyPort as String] = config.proxy_port
+#endif
             
             url_session_configuration.connectionProxyDictionary = dict
         }

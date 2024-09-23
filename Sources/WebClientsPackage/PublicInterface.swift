@@ -1,5 +1,4 @@
 import Foundation
-import WebClientsPackage
 
 public struct WebClientError: Error {
     public enum ErrorKind: Sendable {
