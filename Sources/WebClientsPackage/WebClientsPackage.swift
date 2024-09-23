@@ -41,6 +41,7 @@ public struct AccessNetworkConfig: Sendable {
     }
 }
 
+@available(iOS 16.0, *)
 public struct ParsedURL {
     private let is_ssl: Bool
     private let is_auth: Bool
@@ -52,7 +53,7 @@ public struct ParsedURL {
 
     public init(_ url: String, login: String? = nil, password: String? = nil) throws {
         // format: [protocol://]host[:port][/path]
-        let regex = Regex(#"/(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?/"#)
+        let regex = try Regex(#"/(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?/"#)
         guard let match = try regex.wholeMatch(in: url) else {
             throw WebClientError(kind: .generalError, reason: "invalid URL")
         }
