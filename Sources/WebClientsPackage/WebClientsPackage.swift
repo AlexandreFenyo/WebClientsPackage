@@ -179,6 +179,7 @@ public final class WebClientSession: Sendable {
             dict[kCFNetworkProxiesHTTPPort as String] = config.proxy_port
 
 #if os(macOS)
+            // On iOS, kCFNetworkProxiesHTTPEnable, kCFNetworkProxiesHTTPProxy and kCFNetworkProxiesHTTPPort are used for SSL and non-SSL proxies, but not on macOS
             // For URL starting with https://
             dict[kCFNetworkProxiesHTTPSEnable as String] = 1
             dict[kCFStreamPropertyHTTPSProxyHost as String] = config.proxy_host
