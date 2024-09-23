@@ -52,7 +52,7 @@ public struct ParsedURL {
 
     public init(_ url: String, login: String? = nil, password: String? = nil) throws {
         // format: [protocol://]host[:port][/path]
-        let regex = /(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?/
+        let regex = #"/(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?/"#
         guard let match = try regex.wholeMatch(in: url) else {
             throw WebClientError(kind: .generalError, reason: "invalid URL")
         }
