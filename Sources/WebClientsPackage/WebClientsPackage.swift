@@ -41,7 +41,7 @@ public struct AccessNetworkConfig: Sendable {
     }
 }
 
-struct ParsedURL {
+public struct ParsedURL {
     private let is_ssl: Bool
     private let is_auth: Bool
     private let login: String?
