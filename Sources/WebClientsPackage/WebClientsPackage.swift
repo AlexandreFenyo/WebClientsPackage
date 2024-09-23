@@ -160,6 +160,7 @@ final class WebClientDelegate: NSObject, URLSessionDelegate, URLSessionTaskDeleg
     }
 }
 
+@available(iOS 13.0, *)
 public final class WebClientSession: Sendable {
     private let config: AccessNetworkConfig
     private let verbose: Bool
