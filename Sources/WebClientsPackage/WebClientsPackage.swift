@@ -82,7 +82,7 @@ public struct ParsedURL {
         }
     }
     
-    func toTarget(timeout: TimeInterval = 0) -> WebClientTarget {
+    public func toTarget(timeout: TimeInterval = 0) -> WebClientTarget {
         return WebClientTarget(is_ssl: is_ssl, is_auth: is_auth, login: login, password: password, host: host, port: port, path: path, timeout: timeout)
     }
 }
