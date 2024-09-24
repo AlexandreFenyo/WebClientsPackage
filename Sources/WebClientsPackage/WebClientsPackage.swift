@@ -89,6 +89,7 @@ public struct ParsedURL {
 }
 
 // Target web server
+@available(iOS 13.0, *)
 public struct WebClientTarget: Sendable {
     let is_ssl: Bool
     let is_auth: Bool
