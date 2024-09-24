@@ -30,6 +30,8 @@ import Foundation
 // HTML4: <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
 // HTML5: <meta charset="Windows-1252">
 
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
 public struct HTML {
     public let content: String
 
@@ -62,11 +64,11 @@ public struct HTML {
         guard let head = String(bytes: data[0..<min(1024, data.indices.last!)], encoding: .ascii) else {
             return encoding
         }
-        let regex = /charset=(?<charset>[a-zA-Z0-9-]+)/
+        let regex = try Regex(#"charset=(?<charset>[a-zA-Z0-9-]+)"#, as: (Substring, charset: Substring).self)
         guard let match = try regex.firstMatch(in: head) else {
             return encoding
         }
-        if let encoding = Self.charsetNameToCharset[match.charset.lowercased()] {
+        if let encoding = Self.charsetNameToCharset[match.output.1.lowercased()] {
             return encoding
         }
         
