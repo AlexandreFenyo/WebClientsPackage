@@ -19,7 +19,7 @@ func example() async throws {
     let credentials: CredentialsContainer = ["domotique": (/* StaticCredentials.login */ "foo", /* StaticCredentials.password */ "bar")]
     let session = try WebClientSession(config: AccessNetworkConfig(is_check_ssl: false, credentials: credentials))
     let (data, request, response) = try await session.fetch(target: parsed_url.toTarget())
-    guard let data, let request, let response else {
+    guard let data, /* let request,*/ let response else {
         throw WebClientError(kind: .generalError, reason: "invalid fetch results")
     }
     let html = try HTML(data: data, response: response)
