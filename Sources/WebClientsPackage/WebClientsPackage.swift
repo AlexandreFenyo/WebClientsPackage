@@ -42,6 +42,7 @@ public struct AccessNetworkConfig: Sendable {
 }
 
 @available(iOS 16.0, *)
+@available(macOS 13.0, *)
 public struct ParsedURL {
     private let is_ssl: Bool
     private let is_auth: Bool
@@ -162,6 +163,7 @@ final class WebClientDelegate: NSObject, URLSessionDelegate, URLSessionTaskDeleg
 }
 
 @available(iOS 13.0, *)
+@available(macOS 13.0, *)
 public final class WebClientSession: Sendable {
     private let config: AccessNetworkConfig
     private let verbose: Bool

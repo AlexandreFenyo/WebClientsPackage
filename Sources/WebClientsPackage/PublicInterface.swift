@@ -13,6 +13,7 @@ public struct WebClientError: Error {
 }
 
 @available(iOS 16.0, *)
+@available(macOS 13.0, *)
 func example() async throws {
     let parsed_url = try ParsedURL("https://fenyo.net/")
     let credentials: CredentialsContainer = ["domotique": (/* StaticCredentials.login */ "foo", /* StaticCredentials.password */ "bar")]

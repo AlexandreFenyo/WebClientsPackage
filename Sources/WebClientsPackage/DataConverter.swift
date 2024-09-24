@@ -31,6 +31,7 @@ import Foundation
 // HTML5: <meta charset="Windows-1252">
 
 @available(iOS 16.0, *)
+@available(macOS 13.0, *)
 public struct HTML {
     public let content: String
 
