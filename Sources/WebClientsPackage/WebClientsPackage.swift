@@ -53,7 +53,7 @@ public struct ParsedURL {
 
     public init(_ url: String, login: String? = nil, password: String? = nil) throws {
         // format: [protocol://]host[:port][/path]
-        let regex = try Regex(#"/(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?/"#)
+        let regex = try Regex(#"(?<protocol>https?:\/\/)(?<host>[^:\/]+)(?<port>:[0-9]+)?(?<path>\/.*)?"#, as: (Substring, protocol: Substring, host: Substring, port: Optional<Substring>, path: Optional<Substring>).self)
         guard let match = try regex.wholeMatch(in: url) else {
             throw WebClientError(kind: .generalError, reason: "invalid URL")
         }
@@ -65,10 +65,10 @@ public struct ParsedURL {
         } else {
             is_auth = true
         }
-        
-        is_ssl = match.protocol == "https://"
-        host = String(match.host)
-        if let _port = match.port {
+
+        is_ssl = String(match.output.1) == "https://"
+        host = String(match.output.2)
+        if let _port = match.output.3 {
             port = Int(String(_port[_port.index(after: _port.startIndex)...]))!
         } else {
             port = is_ssl ? 443 : 80
@@ -76,7 +76,7 @@ public struct ParsedURL {
         if (1...65535).contains(port) == false {
             throw WebClientError(kind: .generalError, reason: "invalid proxy port")
         }
-        if let _path = match.path {
+        if let _path = match.output.4 {
             path = String(_path[_path.index(after: _path.startIndex)...])
         } else {
             path = "/"
